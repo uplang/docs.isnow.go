@@ -2,7 +2,7 @@
 title: HTTP API reference
 ---
 
-`isnow serve` exposes the language over HTTP, versioned under `/v1`. An isnow appears as a catch-all path suffix (its internal `/` separators need no encoding) or as the `q` query parameter. Common query parameters: `at`/`from` (RFC 3339 instant, default now) and `n` (count). Every response carries `Cache-Control: no-store`. The default listen address is `:8601` (ISO 8601).
+`isnow serve` exposes the language over HTTP, versioned under `/v1`. Opening the server root (`/`) in a browser serves an **interactive playground** — a live evaluator that breaks a pattern into its labeled fields, explains it, shows the next occurrences, and a builder — all driven by the API below. An isnow appears as a catch-all path suffix (its internal `/` separators need no encoding) or as the `q` query parameter. Common query parameters: `at`/`from` (RFC 3339 instant, default now) and `n` (count). Every response carries `Cache-Control: no-store`. The default listen address is `:8601` (ISO 8601).
 
 ## The status-code membership test
 
