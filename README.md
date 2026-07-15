@@ -2,7 +2,7 @@
 
 # docs.isnow.go
 
-Documentation for **[isnow.go](https://github.com/uplang/isnow.go)** — the Go library, `isnow` command-line tool, and HTTP time server for the [isnow](https://github.com/uplang/isnow) (*DTimpalr*) date/time pattern language.
+Documentation for **[isnow.go](https://github.com/uplang/isnow.go)** — the Go library, `isnow` command-line tool, and HTTP time server for the [isnow](https://github.com/uplang/isnow) (_DTimpalr_) date/time pattern language.
 
 Published at **[uplang.github.io/docs.isnow.go](https://uplang.github.io/docs.isnow.go/)**.
 

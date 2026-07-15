@@ -6,32 +6,32 @@ isnow is a strict superset of cron's expressiveness. A cron line's five fields �
 
 ## Field mapping
 
-| cron | isnow |
-| --- | --- |
-| `M H D Mo W` | `*/Mo/D W H:M:00` |
-| minute `*/15` | `:0+[15]` |
-| hour `8-17` | `8-17` |
-| day-of-month `1` | `/1` |
-| day-of-week `1-5` (Mon–Fri) | `M-F` |
-| `L` (last day, extensions) | `-1` (from-end value) |
-| `#3` (3rd weekday, extensions) | `+[3]` (step) |
+| cron                           | isnow                 |
+| ------------------------------ | --------------------- |
+| `M H D Mo W`                   | `*/Mo/D W H:M:00`     |
+| minute `*/15`                  | `:0+[15]`             |
+| hour `8-17`                    | `8-17`                |
+| day-of-month `1`               | `/1`                  |
+| day-of-week `1-5` (Mon–Fri)    | `M-F`                 |
+| `L` (last day, extensions)     | `-1` (from-end value) |
+| `#3` (3rd weekday, extensions) | `+[3]` (step)         |
 
 ## Worked examples
 
-| crontab | isnow |
-| --- | --- |
-| `0 6 * * *` | `6` |
-| `0 12 * * 1,3,5` | `M,W,F noon` |
-| `*/15 * * * *` | `:0+[15]` |
-| `0 9 * * 1-5` | `M-F 09:00` |
-| `0 0 1 * *` | `/1 0` |
+| crontab                          | isnow             |
+| -------------------------------- | ----------------- |
+| `0 6 * * *`                      | `6`               |
+| `0 12 * * 1,3,5`                 | `M,W,F noon`      |
+| `*/15 * * * *`                   | `:0+[15]`         |
+| `0 9 * * 1-5`                    | `M-F 09:00`       |
+| `0 0 1 * *`                      | `/1 0`            |
 | `0 12 * 11 4#4` (4th Thu of Nov) | `11/ Th+[4] noon` |
-| `0 0 L * *` (last day of month) | `*/*/-1 midnight` |
+| `0 0 L * *` (last day of month)  | `*/*/-1 midnight` |
 
 ## What isnow adds
 
 - **The membership test.** `isnow '/1 0'` exits 0 iff it is midnight on the 1st — compose it into any shell pipeline (`isnow wait 6 && backup`).
-- **From-end counting.** `11/ Th-[1] noon` is the *last* Thursday of November — cron needs extensions and still can't express "the last 15 days" (`12/-15`).
+- **From-end counting.** `11/ Th-[1] noon` is the _last_ Thursday of November — cron needs extensions and still can't express "the last 15 days" (`12/-15`).
 - **Bounds.** `12 >=2011 <2016` runs only within a window; cron runs forever.
 - **Seconds and steps everywhere.** `::+[9]` fires every 9 seconds; the same `+[N]` step works on any field.
 - **One expression, many operations.** The same isnow answers `is`, `next`, `prev`, `explain`, `wait`, `run`, and serves over HTTP.
@@ -47,6 +47,6 @@ isnow covers the common ground of the whole scheduler family in one token, and a
 | last business day of the month | `L` + rules | — | `BYSETPOS=-1` | `M-F-[1]` |
 | every 30 min, business hours | several entries | verbose | `FREQ=MINUTELY;INTERVAL=30;BYHOUR=…` | `M-F +[30mn] >=9 <=17` |
 | skip holidays | — | — | `EXDATE` list | `! 12/25 ! 1/1` |
-| "is it active *now*?" | — | — | — | the whole point |
+| "is it active _now_?" | — | — | — | the whole point |
 
-What isnow deliberately does *not* do is own a bounded, counted event series (`COUNT`, `DTSTART`) — that stays iCalendar's job. See [Use cases](../uses/) for where each side fits.
+What isnow deliberately does _not_ do is own a bounded, counted event series (`COUNT`, `DTSTART`) — that stays iCalendar's job. See [Use cases](../uses/) for where each side fits.

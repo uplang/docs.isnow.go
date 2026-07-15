@@ -7,7 +7,7 @@ isnow fits wherever a system stands at an instant and asks **"is this window ope
 
 ## Feature flags & entitlements
 
-A flag check *is* a membership test. Store the isnow as the flag's value and evaluate it at request time.
+A flag check _is_ a membership test. Store the isnow as the flag's value and evaluate it at request time.
 
 ```isnow
 M-F 09-17               on during business hours
@@ -62,4 +62,4 @@ Every recipe here is a single token — [put it in a QR code](../qr/) and the ch
 
 ## When to reach for something else
 
-isnow answers "now?"; it does not *own* an event series. If the source of truth is a set of discrete, editable occurrences — a shared calendar, a booking, an invitation, or "the 10th session" — use iCalendar and let isnow *gate* it rather than describe it. See [Gotchas](../gotchas/) for the boundary in detail.
+isnow answers "now?"; it does not _own_ an event series. If the source of truth is a set of discrete, editable occurrences — a shared calendar, a booking, an invitation, or "the 10th session" — use iCalendar and let isnow _gate_ it rather than describe it. See [Gotchas](../gotchas/) for the boundary in detail.

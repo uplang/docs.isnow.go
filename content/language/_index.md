@@ -6,7 +6,7 @@ Every isnow concept has one name. This page is the working vocabulary; the norma
 
 ## The membership test
 
-An **isnow** *holds at* an **instant** when every field constraint is satisfied. That test — `Holds(at)` — is the language's defining operation; "next occurrence" and "previous occurrence" are derived from it. An **occurrence** is any instant at which the isnow holds.
+An **isnow** _holds at_ an **instant** when every field constraint is satisfied. That test — `Holds(at)` — is the language's defining operation; "next occurrence" and "previous occurrence" are derived from it. An **occurrence** is any instant at which the isnow holds.
 
 ```go
 p, _ := isnow.Parse("M,W,F noon")
@@ -24,11 +24,11 @@ Y/m/d   w   H:M:S      [ >|>= spec ]   [ <|<= spec ]
           bare group
 ```
 
-| Field | Group | Separator |
-| --- | --- | --- |
-| year, month, day | date group | `/` |
-| weekday | bare group | — |
-| hour, minute, second | time group | `:` |
+| Field                | Group      | Separator |
+| -------------------- | ---------- | --------- |
+| year, month, day     | date group | `/`       |
+| weekday              | bare group | —         |
+| hour, minute, second | time group | `:`       |
 
 **Groups** are separated by whitespace, `.`, or `_`, so an isnow is a single shell-safe token: `Y/m/d.w.H:M:S` ≡ `Y/m/d_w_H:M:S` ≡ `Y/m/d w H:M:S`.
 
@@ -56,16 +56,16 @@ One uniform algebra applies to every field:
 
 An **interval** — `+[N<unit>]` with a duration unit `s`, `mn`, `h`, or `d` — is a true periodic recurrence ("every N units") written as a bare group of its own. Unlike a field step, which stays inside one field's cycle, an interval crosses field boundaries: `+[90mn]` spans hours, `+[25h]` spans days, `+[10d]` spans months.
 
-An interval anchors **hierarchically to the civil calendar**: the stride picks the smallest civil container that holds it — `minute → hour → day → week → month → year` — and repeats within each container, re-aligning at its boundary. The anchor *moves with its unit* rather than drifting from a fixed epoch, so intervals stay aligned to the wall clock and are DST-sane.
+An interval anchors **hierarchically to the civil calendar**: the stride picks the smallest civil container that holds it — `minute → hour → day → week → month → year` — and repeats within each container, re-aligning at its boundary. The anchor _moves with its unit_ rather than drifting from a fixed epoch, so intervals stay aligned to the wall clock and are DST-sane.
 
-| Interval | Container | Holds at |
-| --- | --- | --- |
-| `+[90mn]` | day | 00:00, 01:30, 03:00, … (re-aligns each midnight) |
-| `+[2h]` | day | 00, 02, … 22 |
-| `+[3d]` | week | Sunday, Wednesday, Saturday |
-| `+[25h]` | week | Sun 00:00, Mon 01:00, … Sat 06:00 |
-| `+[10d]` | month | the 1st, 11th, 21st, 31st |
-| `+[40d]` | year | day-of-year 1, 41, 81, … |
+| Interval  | Container | Holds at                                         |
+| --------- | --------- | ------------------------------------------------ |
+| `+[90mn]` | day       | 00:00, 01:30, 03:00, … (re-aligns each midnight) |
+| `+[2h]`   | day       | 00, 02, … 22                                     |
+| `+[3d]`   | week      | Sunday, Wednesday, Saturday                      |
+| `+[25h]`  | week      | Sun 00:00, Mon 01:00, … Sat 06:00                |
+| `+[10d]`  | month     | the 1st, 11th, 21st, 31st                        |
+| `+[40d]`  | year      | day-of-year 1, 41, 81, …                         |
 
 The week container starts on **Sunday** (weekday 1). An interval ANDs with the rest of the pattern: `M-F +[30mn] >=9 <=17` is every 30 minutes on weekdays inside business hours.
 
@@ -77,17 +77,17 @@ A **pattern exclusion** — `! <spec>`, the `!` set off from its sub-spec by a s
 M-F ! 12/25 ! 1/1       every weekday except Christmas and New Year
 ```
 
-The separator is load-bearing: `!12/25` (no space) is a *field* exclusion (the 25th of any month except December), while `! 12/25` (set off by a separator) is a *pattern* exclusion (skip December 25 entirely).
+The separator is load-bearing: `!12/25` (no space) is a _field_ exclusion (the 25th of any month except December), while `! 12/25` (set off by a separator) is a _pattern_ exclusion (skip December 25 entirely).
 
 ## Canonical form and the shorthand ladder
 
 The **canonical form** is the fully-qualified `Y/m/d w H:M:S` expansion of any isnow. The **shorthand ladder** lets a short isnow stand for its canonical form by position:
 
-| Shorthand | Canonical |
-| --- | --- |
-| `6` | `*/*/* * 06:00:00` |
-| `M noon` | `*/*/* Monday 12:00:00` |
-| `/1 18` | `*/*/01 * 18:00:00` |
+| Shorthand  | Canonical                 |
+| ---------- | ------------------------- |
+| `6`        | `*/*/* * 06:00:00`        |
+| `M noon`   | `*/*/* Monday 12:00:00`   |
+| `/1 18`    | `*/*/01 * 18:00:00`       |
 | `Su :0,30` | `*/*/* Sunday *:00,30:00` |
 
 Produce it with `isnow canon <isnow>` or `Pattern.Canonical()`.

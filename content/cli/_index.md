@@ -8,16 +8,16 @@ The `isnow` binary tests, derives, explains, schedules, and serves isnow pattern
 
 ## Exit codes
 
-| Code | Meaning |
-| --- | --- |
-| `0` | the isnow holds / the operation succeeded |
-| `1` | the isnow does not hold (test commands) |
-| `2` | invalid isnow or arguments |
-| `3` | runtime failure |
+| Code | Meaning                                   |
+| ---- | ----------------------------------------- |
+| `0`  | the isnow holds / the operation succeeded |
+| `1`  | the isnow does not hold (test commands)   |
+| `2`  | invalid isnow or arguments                |
+| `3`  | runtime failure                           |
 
 ## The membership test (default command)
 
-The binary *is* the question — its exit code is the answer:
+The binary _is_ the question — its exit code is the answer:
 
 ```console
 $ isnow 'M,W,F noon' --at 2026-07-15T12:00:00Z ; echo $?
