@@ -18,7 +18,7 @@ p.Next(time.Now())           // the next occurrence
 
 An isnow is seven **fields** in three **groups**:
 
-```
+```text
 Y/m/d   w   H:M:S      [ >|>= spec ]   [ <|<= spec ]
 └ date group ┘ │ └ time group ┘
           bare group

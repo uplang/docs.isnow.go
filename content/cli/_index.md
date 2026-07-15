@@ -2,6 +2,8 @@
 title: CLI reference
 ---
 
+<!-- markdownlint-disable-file MD014 -- shell examples intentionally use a `$` prompt without echoing output -->
+
 The `isnow` binary tests, derives, explains, schedules, and serves isnow patterns. Install with `go install github.com/uplang/isnow.go/cmd/isnow@latest`.
 
 ## Exit codes
@@ -67,7 +69,7 @@ $ isnow run '*/*/* M-F 09:00' -- ./standup-reminder
 
 Or drive a **nowtab** — lines of `<isnow>  <command>` (with `#` comments):
 
-```
+```text
 # nowtab
 /1 0            ./monthly-invoice
 */*/* F 17:00   ./weekly-backup

@@ -14,13 +14,13 @@ M-F +[30mn] >=9 <=17    every 30 min on weekdays, 9-to-5
 M-F ! 12/25 ! 1/1       every weekday except the holidays
 ```
 
-**Learn the language**
+#### Learn the language
 
 - **[Language tour](language/)** — the seven fields, the uniform algebra, intervals, exclusions, and the shorthand ladder.
 - **[Use cases](uses/)** — the jobs isnow is built for, with a recipe for each.
 - **[Gotchas](gotchas/)** — the confusions a compact token invites, and how to read past them.
 
-**Use the tool**
+#### Use the tool
 
 - **[CLI reference](cli/)** — every `isnow` command with runnable examples.
 - **[HTTP API reference](http/)** — the endpoints `isnow serve` exposes.
