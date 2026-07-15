@@ -48,8 +48,36 @@ One uniform algebra applies to every field:
 | `+[15]` | step from an anchor | `:0+[15]` = every 15 minutes |
 | `-[1]` | step from the end | `Th-[1]` = the last Thursday |
 | `Monday+[3]` | weekday-occurrence step | the 3rd Monday of the month |
+| `M-F-[1]` | weekday-span BYSETPOS | the last business day of the month |
 
 **Symbols** are case-insensitive, minimal-unique names: weekdays `Su M Tu W Th F Sa` (plus runs `MWF`, `SS`, `TT`), and the times `noon`/`midday` (12:00:00) and `midnight` (00:00:00). `m` is always Monday.
+
+## Intervals
+
+An **interval** — `+[N<unit>]` with a duration unit `s`, `mn`, `h`, or `d` — is a true periodic recurrence ("every N units") written as a bare group of its own. Unlike a field step, which stays inside one field's cycle, an interval crosses field boundaries: `+[90mn]` spans hours, `+[25h]` spans days, `+[10d]` spans months.
+
+An interval anchors **hierarchically to the civil calendar**: the stride picks the smallest civil container that holds it — `minute → hour → day → week → month → year` — and repeats within each container, re-aligning at its boundary. The anchor *moves with its unit* rather than drifting from a fixed epoch, so intervals stay aligned to the wall clock and are DST-sane.
+
+| Interval | Container | Holds at |
+| --- | --- | --- |
+| `+[90mn]` | day | 00:00, 01:30, 03:00, … (re-aligns each midnight) |
+| `+[2h]` | day | 00, 02, … 22 |
+| `+[3d]` | week | Sunday, Wednesday, Saturday |
+| `+[25h]` | week | Sun 00:00, Mon 01:00, … Sat 06:00 |
+| `+[10d]` | month | the 1st, 11th, 21st, 31st |
+| `+[40d]` | year | day-of-year 1, 41, 81, … |
+
+The week container starts on **Sunday** (weekday 1). An interval ANDs with the rest of the pattern: `M-F +[30mn] >=9 <=17` is every 30 minutes on weekdays inside business hours.
+
+## Pattern exclusions
+
+A **pattern exclusion** — `! <spec>`, the `!` set off from its sub-spec by a separator — removes every instant where the sub-spec holds. Chain them for a holiday list:
+
+```
+M-F ! 12/25 ! 1/1       every weekday except Christmas and New Year
+```
+
+The separator is load-bearing: `!12/25` (no space) is a *field* exclusion (the 25th of any month except December), while `! 12/25` (set off by a separator) is a *pattern* exclusion (skip December 25 entirely).
 
 ## Canonical form and the shorthand ladder
 

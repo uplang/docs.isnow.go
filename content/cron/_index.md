@@ -37,3 +37,16 @@ isnow is a strict superset of cron's expressiveness. A cron line's five fields �
 - **One expression, many operations.** The same isnow answers `is`, `next`, `prev`, `explain`, `wait`, `run`, and serves over HTTP.
 
 Drive a crontab-style schedule with a [nowtab](../cli/#run-the-cron-superset): `isnow run --tab ./nowtab`.
+
+## Next to other schedulers
+
+isnow covers the common ground of the whole scheduler family in one token, and adds the membership test none of them have:
+
+| You want | Quartz cron | systemd `OnCalendar` | iCal RRULE | isnow |
+| --- | --- | --- | --- | --- |
+| last business day of the month | `L` + rules | — | `BYSETPOS=-1` | `M-F-[1]` |
+| every 30 min, business hours | several entries | verbose | `FREQ=MINUTELY;INTERVAL=30;BYHOUR=…` | `M-F +[30mn] >=9 <=17` |
+| skip holidays | — | — | `EXDATE` list | `! 12/25 ! 1/1` |
+| "is it active *now*?" | — | — | — | the whole point |
+
+What isnow deliberately does *not* do is own a bounded, counted event series (`COUNT`, `DTSTART`) — that stays iCalendar's job. See [Use cases](../uses/) for where each side fits.
