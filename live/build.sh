@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Rebuild the live-docs enhancer bundle (static/js/isnow-live.js) from
-# live/enhance.js plus the sibling @uplang/isnow engine. The bundle is committed
+# live/enhance.js plus the sibling @tsvsheet/isnow engine. The bundle is committed
 # so the Hugo site needs no build toolchain; run this only when enhance.js or the
 # isnow.js engine changes. Uses the esbuild already vendored by ../../isnow.js.
 set -euo pipefail

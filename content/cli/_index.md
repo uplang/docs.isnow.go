@@ -4,7 +4,7 @@ title: CLI reference
 
 <!-- markdownlint-disable-file MD014 -- shell examples intentionally use a `$` prompt without echoing output -->
 
-The `isnow` binary tests, derives, explains, schedules, and serves isnow patterns. Install with `go install github.com/uplang/isnow.go/cmd/isnow@latest`.
+The `isnow` binary tests, derives, explains, schedules, and serves isnow patterns. Install with `go install github.com/tsvsheet/isnow.go/cmd/isnow@latest`.
 
 ## Exit codes
 

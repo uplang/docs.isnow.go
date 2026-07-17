@@ -27,4 +27,4 @@ M-F ! 12/25 ! 1/1       every weekday except the holidays
 - **[Migrating from cron](cron/)** — your crontab, as isnows, and how isnow sits next to other schedulers.
 - **[isnow in a QR code](qr/)** — a schedule small enough to print and scan offline.
 
-The language itself (grammar, specification, and the conformance corpus every implementation passes) lives in [uplang/isnow](https://github.com/uplang/isnow). The library is `github.com/uplang/isnow.go`.
+The language itself (grammar, specification, and the conformance corpus every implementation passes) lives in [tsvsheet/isnow](https://github.com/tsvsheet/isnow). The library is `github.com/tsvsheet/isnow.go`.

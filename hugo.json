@@ -1,5 +1,5 @@
 {
-  "baseURL": "https://uplang.github.io/docs.isnow.go/",
+  "baseURL": "https://tsvsheet.github.io/docs.isnow.go/",
   "title": "isnow.go Documentation",
   "publishDir": "_site",
   "enableRobotsTXT": true,

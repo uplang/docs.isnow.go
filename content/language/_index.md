@@ -2,7 +2,7 @@
 title: Language tour
 ---
 
-Every isnow concept has one name. This page is the working vocabulary; the normative definitions live in [SPECIFICATION.md](https://github.com/uplang/isnow/blob/main/SPECIFICATION.md).
+Every isnow concept has one name. This page is the working vocabulary; the normative definitions live in [SPECIFICATION.md](https://github.com/tsvsheet/isnow/blob/main/SPECIFICATION.md).
 
 ## The membership test
 

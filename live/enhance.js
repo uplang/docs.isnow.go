@@ -2,7 +2,7 @@
  * Live isnow enhancer for the docs site. Progressive enhancement: every fenced
  * `isnow` code block (rendered by Hugo as <figure class="listing"> with a
  * "isnow" language label) is upgraded in place into editable rows. Each line
- * becomes an input that re-evaluates through the real @uplang/isnow engine on
+ * becomes an input that re-evaluates through the real @tsvsheet/isnow engine on
  * every keystroke — canonical form, whether it holds right now, the next
  * occurrence, and a plain-English explanation — with parse faults shown inline.
  *
